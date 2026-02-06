@@ -104,7 +104,7 @@ layers:
   - END
   - $$mdi:arrow-right-bold$$
   - trans
-  - trans
+  - {t: '$$mdi:transfer$$', type: trans}
   - _
   - RGB OFF
   - RGB ON
