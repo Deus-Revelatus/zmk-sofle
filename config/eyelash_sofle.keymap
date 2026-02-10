@@ -41,7 +41,7 @@
             #binding-cells = <0>;
             flavor = "balanced";
             tapping-term-ms = <200>;
-            bindings = <&mo 3>, <&kp SPACE>;
+            bindings = <&mo 3 &kp SPACE>; // 괄호와 쉼표 수정됨
         };
         
         td_slash_bslh: tap_dance_slashes {
@@ -63,7 +63,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp &kp>; // 괄호와 쉼표 수정됨
         };
     };
 
@@ -86,7 +86,7 @@
         SHIFT_MCLK: SHIFT_MCLK {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press &kp LSHFT>, <&macro_press &mkp MB3>, <&macro_pause_for_release>, <&macro_release &mkp MB3>, <&macro_release &kp LSHFT>;
+            bindings = <&macro_press &kp LSHFT &mkp MB3>, <&macro_pause_for_release>, <&macro_release &mkp MB3 &kp LSHFT>;
             label = "SHIFT_MCLK";
         };
     };
