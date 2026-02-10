@@ -36,30 +36,54 @@
     };
 
     behaviors {
-        // 홀드-탭 틀 정의 (인자 2개를 받도록 수정)
-        sh_mo: space_hold_mo {
+        sh_mo: sh_mo {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <200>;
-            bindings = <&mo>, <&kp>; // 여기서 기능을 정의
+            bindings = <&mo>, <&kp>; 
         };
-        
-        td_slash_bslh: tap_dance_slashes {
+
+        // [-]를 위한 전용 홀드-탭 (탭-홀드 시 반복 입력 가능하게 설정)
+        min_ht: minus_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>; // 탭 후 바로 홀드하면 반복 입력(-) 발생
+            bindings = <&kp MINUS>, <&kp MINUS>;
+        };
+
+        // [수정된] 마이너스/언더바 탭 댄스
+        td_min_un: td_min_un {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&min_ht 0 0>, <&kp UNDER>; // 첫 타를 홀드-탭으로 연결
+        };
+
+        td_eq_plus: td_eq_plus {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp EQUAL>, <&kp PLUS>;
+        };
+
+        td_slash_bslh: td_slash_bslh {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp FSLH>, <&kp BSLH>;
         };
 
-        td_quotes: tap_dance_quotes {
+        td_quotes: td_quotes {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp APOS>, <&kp DOUBLE_QUOTES>;
         };
 
-        grv_tld: grave_tilde {
+        grv_tld: grv_tld {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
@@ -111,9 +135,9 @@
             display-name = "layer1";
             bindings = <
 &grv_tld TILDE GRAVE  &kp F1     &kp F2       &kp F3     &kp F4      &kp F5       &mmv MOVE_UP     &kp F6           &kp F7          &kp F8       &kp F9       &kp F10      &trans
-&kp EQUAL             &kp N1     &kp N2       &kp N3     &kp N4      &kp N5       &mmv MOVE_DOWN   &trans           &kp INSERT      &kp HOME     &kp LBKT     &kp RBKT     &trans
-&kp MINUS             &kp N6     &kp N7       &kp N8     &kp N9      &kp N0       &mmv MOVE_LEFT   &kp BACKSPACE    &kp LEFT        &kp DOWN     &kp UP       &kp RIGHT    &td_quotes
-&kp UNDER             &trans     &trans       &trans     &kp PLUS    &kp DELETE   &mmv MOVE_RIGHT  &kp DELETE       &kp PG_UP       &kp PG_DN    &kp END      &kp F11      &kp F12          
+&td_eq_plus           &kp N1     &kp N2       &kp N3     &kp N4      &kp N5       &mmv MOVE_DOWN   &trans           &kp INSERT      &kp HOME     &kp LBKT     &kp RBKT     &trans
+&td_min_un            &kp N6     &kp N7       &kp N8     &kp N9      &kp N0       &mmv MOVE_LEFT   &kp BACKSPACE    &kp LEFT        &kp DOWN     &kp UP       &kp RIGHT    &td_quotes
+&trans                &trans     &trans       &trans     &kp PLUS    &kp DELETE   &mmv MOVE_RIGHT  &kp DELETE       &kp PG_UP       &kp PG_DN    &kp END      &kp F11      &kp F12          
 &kp C_MUTE            &trans     &trans       &trans     &trans      &trans       &mkp LCLK        &trans           &trans          &trans       &trans       &trans
             >;
             sensor-bindings = <&scroll_encoder>;
