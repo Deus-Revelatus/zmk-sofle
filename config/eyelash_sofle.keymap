@@ -36,12 +36,13 @@
     };
 
     behaviors {
-        sh_mo3: space_hold_mo3 {
+        // 홀드-탭 틀 정의 (인자 2개를 받도록 수정)
+        sh_mo: space_hold_mo {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <200>;
-            bindings = <&mo 3 &kp SPACE>; // 괄호와 쉼표 수정됨
+            bindings = <&mo>, <&kp>; // 여기서 기능을 정의
         };
         
         td_slash_bslh: tap_dance_slashes {
@@ -63,7 +64,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp &kp>; // 괄호와 쉼표 수정됨
+            bindings = <&kp>, <&kp>;
         };
     };
 
@@ -101,7 +102,7 @@
 &kp TAB     &kp Q     &kp W     &kp E     &kp R     &kp T     &kp DOWN  &kp Y     &kp U     &kp I     &kp O     &kp P     &kp BSLH
 &kp LSHFT   &kp A     &kp S     &kp D     &kp F     &kp G     &kp LEFT  &kp H     &kp J     &kp K     &kp L     &kp SEMI  &kp RSHFT
 &mo 2       &kp Z     &kp X     &kp C     &kp V     &kp B     &kp RIGHT &kp N     &kp M     &kp COMMA &kp DOT   &td_slash_bslh &trans
-&trans      &kp LCTRL &kp LALT  &trans    &mo 1     &sh_mo3   &kp RET   &kp RET   &kp SPACE &mo 1     &kp RSHFT &mo 2
+&trans      &kp LCTRL &kp LALT  &trans    &mo 1     &sh_mo 3 SPACE &kp RET &kp RET &kp SPACE &mo 1     &kp RSHFT &mo 2
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
