@@ -36,22 +36,23 @@
     };
 
     behaviors {
+        // 홀드-탭 틀 정의 (인자 2개를 받도록 설정)
         sh_mo: sh_mo {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <200>;
-            bindings = <&mo>, <&kp>; 
+            bindings = <&mo &kp>; // 쉼표 제거 및 틀만 정의
         };
 
-        // [-]를 위한 전용 홀드-탭 (탭-홀드 시 반복 입력 가능하게 설정)
+        // [-]를 위한 전용 홀드-탭 (틀 정의)
         min_ht: minus_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            quick-tap-ms = <200>; // 탭 후 바로 홀드하면 반복 입력(-) 발생
-            bindings = <&kp MINUS>, <&kp MINUS>;
+            quick-tap-ms = <200>; // 탭 후 바로 홀드하면 반복 입력(-)
+            bindings = <&kp &kp>; // 쉼표 제거 및 틀만 정의
         };
 
         // [수정된] 마이너스/언더바 탭 댄스
@@ -59,7 +60,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&min_ht 0 0>, <&kp UNDER>; // 첫 타를 홀드-탭으로 연결
+            bindings = <&min_ht MINUS MINUS>, <&kp UNDER>; // 여기서 실제 키(팥)를 넣음
         };
 
         td_eq_plus: td_eq_plus {
@@ -88,7 +89,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&kp &kp>; // 쉼표 제거 및 틀만 정의
         };
     };
 
