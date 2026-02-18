@@ -36,31 +36,28 @@
     };
 
     behaviors {
-        // 홀드-탭 틀 정의 (인자 2개를 받도록 설정)
         sh_mo: sh_mo {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "balanced";
             tapping-term-ms = <200>;
-            bindings = <&mo &kp>; // 쉼표 제거 및 틀만 정의
+            bindings = <&mo &kp>; 
         };
 
-        // [-]를 위한 전용 홀드-탭 (틀 정의)
         min_ht: minus_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
-            quick-tap-ms = <200>; // 탭 후 바로 홀드하면 반복 입력(-)
-            bindings = <&kp &kp>; // 쉼표 제거 및 틀만 정의
+            quick-tap-ms = <200>;
+            bindings = <&kp &kp>; 
         };
 
-        // [수정된] 마이너스/언더바 탭 댄스
         td_min_un: td_min_un {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&min_ht MINUS MINUS>, <&kp UNDER>; // 여기서 실제 키(팥)를 넣음
+            bindings = <&min_ht MINUS MINUS>, <&kp UNDER>;
         };
 
         td_eq_plus: td_eq_plus {
@@ -89,7 +86,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp &kp>; // 쉼표 제거 및 틀만 정의
+            bindings = <&kp &kp>; 
         };
     };
 
@@ -136,8 +133,8 @@
             display-name = "layer1";
             bindings = <
 &grv_tld TILDE GRAVE  &kp F1     &kp F2       &kp F3     &kp F4      &kp F5       &mmv MOVE_UP     &kp F6           &kp F7          &kp F8       &kp F9       &kp F10      &trans
-&td_eq_plus           &kp N1     &kp N2       &kp N3     &kp N4      &kp N5       &mmv MOVE_DOWN   &trans           &kp INSERT      &kp HOME     &kp LBKT     &kp RBKT     &trans
-&td_min_un            &kp N6     &kp N7       &kp N8     &kp N9      &kp N0       &mmv MOVE_LEFT   &kp BACKSPACE    &kp LEFT        &kp DOWN     &kp UP       &kp RIGHT    &td_quotes
+&td_eq_plus           &kp N6     &kp N7       &kp N8     &kp N9      &kp N0       &mmv MOVE_DOWN   &trans           &kp INSERT      &kp HOME     &kp LBKT     &kp RBKT     &trans
+&td_min_un            &kp N1     &kp N2       &kp N3     &kp N4      &kp N5       &mmv MOVE_LEFT   &kp BACKSPACE    &kp LEFT        &kp DOWN     &kp UP       &kp RIGHT    &td_quotes
 &trans                &trans     &trans       &trans     &kp PLUS    &kp DELETE   &mmv MOVE_RIGHT  &kp DELETE       &kp PG_UP       &kp PG_DN    &kp END      &kp F11      &kp F12          
 &kp C_MUTE            &trans     &trans       &trans     &trans      &trans       &mkp LCLK        &trans           &trans          &trans       &trans       &trans
             >;
