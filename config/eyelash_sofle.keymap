@@ -156,11 +156,11 @@
         layer_3 {
             display-name = "layer3";
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans      &trans      &trans      &trans      &trans      &trans      &trans            &trans  &trans  &trans  &trans  &trans  &trans
+&trans      &trans      &trans      &trans      &trans      &trans      &trans            &trans  &trans  &trans  &trans  &trans  &trans
+&kp LC(A)   &kp LC(F)   &kp LC(C)   &kp LC(X)   &kp LC(V)   &trans      &trans            &trans  &trans  &trans  &trans  &trans  &trans
+&trans      &trans      &trans      &trans      &trans      &trans      &trans            &trans  &trans  &trans  &trans  &trans  &trans
+&trans      &trans      &trans      &trans      &trans      &trans      &trans            &trans  &trans  &trans  &trans  &trans
             >;
             sensor-bindings = <&scroll_encoder>;
         };
